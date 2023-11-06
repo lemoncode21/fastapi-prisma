@@ -1,0 +1,18 @@
+generator client {
+  provider             = "Prisma-client-py"
+  interface            = "asyncio"
+  recursive_type_depth = 5
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Post {
+  id          Int    @id @default(autoincrement())
+  post        String @map("post") @db.VarChar(100)
+  description String @map("description") @db.VarChar(255)
+
+  @@map("post")
+}
